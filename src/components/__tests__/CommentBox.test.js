@@ -1,11 +1,16 @@
 import React from "react";
 import { mount } from "enzyme";
+import Root from "Root";
 import CommentBox from "components/CommentBox";
 
 let wrapped;
 
 beforeEach(() => {
-  wrapped = mount(<CommentBox />);
+  wrapped = mount(
+    <Root>
+      <CommentBox />
+    </Root>
+  );
 });
 
 afterEach(() => {
@@ -24,7 +29,7 @@ describe("the text area", () => {
     });
     wrapped.update();
   });
-  
+
   it("has a text area that users cam type in", () => {
     expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
   });
